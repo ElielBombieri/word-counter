@@ -1,7 +1,8 @@
 import fs from "fs"
 import trataErro from './erros/funcoesErros.js'
 import { contaPalavras } from "./index.js";
-const link = "arquivos/texto-web.txt";
+import { montaSaidaArquivo } from "./helpers.js";
+const link = "arquivos/texto-kanban.txt";
 
 fs.readFile(link, 'utf-8', (erro, texto) => {
     try {
@@ -15,7 +16,7 @@ fs.readFile(link, 'utf-8', (erro, texto) => {
 
 async function criaESalvaArquivo(listaPalavras, caminho) {
     const arquivoNovo = caminho + '/resultado.txt';
-    const textoPalavras = JSON.stringify(listaPalavras);
+    const textoPalavras = montaSaidaArquivo(listaPalavras);
 
     try {
         await fs.promises.writeFile(arquivoNovo, textoPalavras);
